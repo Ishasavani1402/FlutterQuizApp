@@ -23,10 +23,10 @@ class ApiService {
   static Future<QuizModel?> api_quiz(int categoryid) async {
     try {
       var url =
-          "https://opentdb.com/api.php?amount=20&category=$categoryid&difficulty=easy&type=boolean";
+          "https://opentdb.com/api.php?amount=10&category=$categoryid&difficulty=easy&type=multiple";
       var uri = Uri.parse(url);
       var response = await http.get(uri);
-      print("Api Response : ${response.statusCode} : ${response.body}");
+      print("Api Response for category :$categoryid : ${response.statusCode} : ${response.body}");
       if (response.statusCode == 200 || response.statusCode == 201) {
         var jsondata = jsonDecode(response.body);
         return QuizModel.fromJson(jsondata);

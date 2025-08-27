@@ -6,11 +6,13 @@ import 'package:html_unescape/html_unescape.dart';
 import 'package:quizapplication/ApiService/ApiService.dart';
 import 'package:quizapplication/Model/QUizModel.dart';
 import 'dart:async';
-
+import 'QuizResult.dart';
 import 'UserAuth/Login.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  int? categoryid;
+  String?Categoryname;
+   Homepage({super.key ,  this.categoryid , this.Categoryname});
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -29,12 +31,11 @@ class _HomepageState extends State<Homepage> {
   String? selectedAnswer;
   late Future<QuizModel?> quizFuture;
   List<List<String>> shuffledAnswers = [];
-  int categoryid = 0;
 
   @override
   void initState() {
     super.initState();
-    quizFuture = ApiService.api_quiz(categoryid);
+    quizFuture = ApiService.api_quiz(widget.categoryid!);
   }
 
   void startTimer(QuizModel quiz) {
@@ -128,7 +129,7 @@ class _HomepageState extends State<Homepage> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        quizFuture = ApiService.api_quiz(categoryid);
+                        quizFuture = ApiService.api_quiz(widget.categoryid!);
                       });
                     },
                     child: const Text("Retry"),
@@ -157,8 +158,21 @@ class _HomepageState extends State<Homepage> {
             }
 
             if (isQuizCompleted) {
-              return buildResultScreen(quiz.results!.length);
-            }
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Quizresult(
+                      totalQuestions: quiz.results!.length,
+                      attemptedQuestions: attemptedQuestions,
+                      correctAnswers: correctAnswers,
+                      wrongAnswers: wrongAnswers,
+                      categoryid: widget.categoryid ?? 9,
+                      categoryName: widget.Categoryname ?? "General Knowledge",
+                    ),
+                  ),
+                );
+              });            }
 
             if (currentQuestionIndex == 0 && secondsRemaining == 30 && timer == null) {
               startTimer(quiz);
@@ -173,6 +187,7 @@ class _HomepageState extends State<Homepage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text("Category : ${widget.Categoryname}"),
                   Text(
                     "Question ${currentQuestionIndex + 1}/${quiz.results!.length}",
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -218,45 +233,6 @@ class _HomepageState extends State<Homepage> {
             );
           }
         },
-      ),
-    );
-  }
-
-  Widget buildResultScreen(int totalQuestions) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            "Quiz Completed!",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 20),
-          Text("Total Questions: $totalQuestions"),
-          Text("Attempted: $attemptedQuestions"),
-          Text("Correct: $correctAnswers"),
-          Text("Wrong: $wrongAnswers"),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                currentQuestionIndex = 0;
-                correctAnswers = 0;
-                wrongAnswers = 0;
-                attemptedQuestions = 0;
-                isQuizCompleted = false;
-                userAnswers = [];
-                answerCorrectness = [];
-                selectedAnswer = null;
-                timer?.cancel();
-                timer = null;
-                quizFuture = ApiService.api_quiz(categoryid);
-                shuffledAnswers.clear();
-              });
-            },
-            child: const Text("Restart Quiz"),
-          ),
-        ],
       ),
     );
   }

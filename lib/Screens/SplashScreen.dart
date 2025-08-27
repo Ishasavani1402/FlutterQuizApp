@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quizapplication/Screens/HomePage.dart';
+import 'package:quizapplication/Screens/CategoryScreen.dart';
 
 import 'UserAuth/Login.dart';
 
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen>
     // Use `pushReplacement` to prevent the user from navigating back to the splash screen.
     final user = FirebaseAuth.instance.currentUser;
     if(user!=null){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homepage()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> CategoryScreen()));
     }else{
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Login()));
 
