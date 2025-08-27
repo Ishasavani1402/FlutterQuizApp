@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizapplication/HomePage.dart';
-import 'package:quizapplication/UserAuth/Login.dart';
+import 'package:quizapplication/Screens/HomePage.dart';
+
+import 'Login.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
