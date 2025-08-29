@@ -1,16 +1,19 @@
-# quizapplication
+# Introduction
+-> Built a Flutter quiz app with email/password and Google authentication, password recovery, dynamic category selection, and API-driven question loading.
+Implemented category-wise quizzes and result screens displaying attempts, correct, and incorrect answers for user feedback.
 
-A new Flutter project.
+# TackStack
+✔ Flutter
+✔ Firebase
+✔ Sqlite
+✔ RestAPi(https://opentdb.com/api_config.php) for question and category
 
-## Getting Started
+# Features
 
-This project is a starting point for a Flutter application.
+✔ Registration and login via Email and password
+✔ login with Google Account
+✔ ForgotPassword
+✔ Category BAsed Question and Give Answer
+✔ Show Your Result
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
