@@ -6,9 +6,8 @@ import 'package:quizapplication/ApiService/ApiService.dart';
 import 'package:quizapplication/Model/QUizModel.dart';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart'; // Import for Google Fonts
-import '../Database/DB_Helper.dart';
+import '../../Database/DB_Helper.dart';
 import 'QuizResult.dart';
-import 'UserAuth/Login.dart';
 
 // Use the color codes provided by the user.
  Color kPrimaryColor = Color(0xFF1C3D24);
@@ -185,7 +184,7 @@ class _StartquizState extends State<Startquiz> {
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
-                      overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.visible,
                     ),
                   ),
                 ],

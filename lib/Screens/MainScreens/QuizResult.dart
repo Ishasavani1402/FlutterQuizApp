@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart'; // Import for Google Fonts
-import 'package:quizapplication/Model/QUizModel.dart';
-import 'package:quizapplication/Screens/HomeScreen.dart';
-import 'StartQuiz.dart';
+import 'HomeScreen.dart';
 
 // Use the color codes provided by the user.
 const Color kPrimaryColor = Color(0xFF1C3D24);
@@ -36,11 +34,12 @@ class Quizresult extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [kPrimaryColor, Color(0xFF142B1A)],
+            colors: [kPrimaryColor,
+              Color(0xFF142B1A)],
           ),
         ),
         child: Column(
@@ -88,7 +87,7 @@ class Quizresult extends StatelessWidget {
             // Main Content Area
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: SingleChildScrollView(
                   child: Card(
                     elevation: 8,
@@ -140,12 +139,12 @@ class Quizresult extends StatelessWidget {
                           const SizedBox(height: 24),
 
                           // Results Details
-                          _buildResultRow("Category:", categoryName),
+                          _buildResultRow("", categoryName),
                           _buildResultRow("Total Questions:", totalQuestions.toString()),
                           _buildResultRow("Attempted:", attemptedQuestions.toString()),
                           _buildResultRow("Correct:", correctAnswers.toString(), color: kCorrectColor),
                           _buildResultRow("Wrong:", wrongAnswers.toString(), color: kWrongColor),
-                          const SizedBox(height: 32),
+                          SizedBox(height: 32),
 
                           // Restart Button
                           ElevatedButton(
@@ -167,7 +166,7 @@ class Quizresult extends StatelessWidget {
                               elevation: 8,
                             ),
                             child: Text(
-                              "Restart Quiz",
+                              "Go to Home",
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -201,6 +200,7 @@ class Quizresult extends StatelessWidget {
               color: kPrimaryColor.withOpacity(0.8),
               fontWeight: FontWeight.w500,
             ),
+            overflow: TextOverflow.visible,
           ),
           Text(
             value,
@@ -209,6 +209,8 @@ class Quizresult extends StatelessWidget {
               color: color ?? kPrimaryColor,
               fontWeight: FontWeight.bold,
             ),
+            overflow: TextOverflow.visible,
+
           ),
         ],
       ),

@@ -90,7 +90,7 @@ class DatabaseHelper {
         'attempt_id': attemptId,
         'question': question,
         'user_answer': userAnswer,
-        'correct_answermarkAttemptAsCompleted': correctAnswer,
+        'correct_answer': correctAnswer,
         'is_correct': isCorrect ? 1 : 0,
       },
     );

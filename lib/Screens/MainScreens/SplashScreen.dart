@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quizapplication/Screens/HomeScreen.dart';
-import 'package:quizapplication/Screens/StartQuiz.dart';
-import 'package:quizapplication/Screens/CategoryScreen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'UserAuth/Login.dart';
+import '../UserAuth/Login.dart';
+import 'HomeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
-   SplashScreen({super.key});
+  SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -23,9 +22,8 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration:  Duration(milliseconds: 1500),
+      duration:  Duration(seconds: 4),
     );
-    // Define the animation from 0.0 to 1.0 (fully faded in).
     _animation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeIn,
@@ -58,15 +56,15 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // Use a gradient for a unique, visually appealing background.
+        // Use a more dynamic, visually appealing gradient.
         decoration:  BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Color(0xFF1C3D24), // A nice shade of purple
               Color(0xff88ab8e), // A darker shade of purple
             ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: Center(
@@ -80,29 +78,36 @@ class _SplashScreenState extends State<SplashScreen>
                 // The `Transform.scale` makes the logo slightly pulse during the animation.
                 Transform.scale(
                   scale: 1.0 + (_animation.value * 0.1), // Scales from 1.0 to 1.1
-                  child: Icon(
-                    Icons.question_answer,
-                    size: 100,
-                    color: Colors.white,
-                  ),
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                    child: Icon(
+                      Icons.lightbulb,
+                      size: 70,
+                      color: Color(0xFF21482A),
+                    ),
+                  )
                 ),
-                 SizedBox(height: 24),
-                // App title.
-                 Text(
+                SizedBox(height: 24),
+                // App title. Using GoogleFonts for a professional touch.
+                Text(
                   'Quiz Master',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     color: Colors.white,
-                    fontSize: 36,
+                    fontSize: 42,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'Roboto', // You can use a custom font here
                   ),
                 ),
-                 SizedBox(height: 8),
+                SizedBox(height: 8),
                 // A brief slogan or subtitle.
-                 Text(
+                Text(
                   'Test Your Knowledge!',
-                  style: TextStyle(
-                    color: Colors.white70,
+                  style: GoogleFonts.poppins(
+                    color: Colors.white.withOpacity(0.8),
                     fontSize: 18,
                     fontStyle: FontStyle.italic,
                   ),
@@ -115,4 +120,3 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 }
-
