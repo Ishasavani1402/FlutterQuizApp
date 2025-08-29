@@ -3,17 +3,17 @@
 Implemented category-wise quizzes and result screens displaying attempts, correct, and incorrect answers for user feedback.
 
 # TackStack
-✔ Flutter
-✔ Firebase
-✔ Sqlite
+✔ Flutter<br>
+✔ Firebase<br>
+✔ Sqlite<br>
 ✔ RestAPi(https://opentdb.com/api_config.php) for question and category
 
 # Features
 
-✔ Registration and login via Email and password
-✔ login with Google Account
-✔ ForgotPassword
-✔ Category BAsed Question and Give Answer
-✔ Show Your Result
+✔ Registration and login via Email and password<br>
+✔ login with Google Account<br>
+✔ ForgotPassword<br>
+✔ Category BAsed Question and Give Answer<br>
+✔ Show Your Result<br>
 
 
