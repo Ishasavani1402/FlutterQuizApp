@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizapplication/Screens/HomePage.dart';
+import 'package:quizapplication/Screens/HomeScreen.dart';
+import 'package:quizapplication/Screens/StartQuiz.dart';
 
 import 'Login.dart';
 
@@ -40,7 +41,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           .then((Value) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Homepage()),
+              MaterialPageRoute(builder: (context) => Homescreen()),
             );
           });
 

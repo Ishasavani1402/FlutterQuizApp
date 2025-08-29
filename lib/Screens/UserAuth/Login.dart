@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:quizapplication/Screens/HomePage.dart';
+import 'package:quizapplication/Screens/HomeScreen.dart';
 
 import 'ForgotPassword.dart';
 import 'Registration.dart';
@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text,
           password: _passwordController.text).then((onValue){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homepage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homescreen()));
       });
       print("login email " + _emailController.text);
       print("login password " +_passwordController.text);
@@ -253,7 +253,7 @@ class _LoginState extends State<Login> {
                   ElevatedButton(onPressed: ()async{
                     bool islogin = await googlelogin();
                     if(islogin){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homepage()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homescreen()));
                     }else{
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error in Login")));
                     }

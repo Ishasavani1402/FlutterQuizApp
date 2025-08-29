@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quizapplication/Screens/HomePage.dart';
+import 'package:quizapplication/Screens/HomeScreen.dart';
+import 'package:quizapplication/Screens/StartQuiz.dart';
 import 'package:quizapplication/Screens/CategoryScreen.dart';
 
 import 'UserAuth/Login.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+   SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration:  Duration(milliseconds: 1500),
     );
     // Define the animation from 0.0 to 1.0 (fully faded in).
     _animation = CurvedAnimation(
@@ -36,14 +37,13 @@ class _SplashScreenState extends State<SplashScreen>
   // Asynchronously navigate to the next screen.
   Future<void> checkuser() async {
     // Wait for the animation to finish plus a small buffer.
-    await Future.delayed(const Duration(milliseconds: 2000));
+    await Future.delayed(Duration(milliseconds: 2000));
     // Use `pushReplacement` to prevent the user from navigating back to the splash screen.
     final user = FirebaseAuth.instance.currentUser;
     if(user!=null){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> CategoryScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homescreen()));
     }else{
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Login()));
-
     }
   }
 
@@ -59,11 +59,11 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
         // Use a gradient for a unique, visually appealing background.
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF6A5ACD), // A nice shade of purple
-              Color(0xFF483D8B), // A darker shade of purple
+              Color(0xFF1C3D24), // A nice shade of purple
+              Color(0xff88ab8e), // A darker shade of purple
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -80,15 +80,15 @@ class _SplashScreenState extends State<SplashScreen>
                 // The `Transform.scale` makes the logo slightly pulse during the animation.
                 Transform.scale(
                   scale: 1.0 + (_animation.value * 0.1), // Scales from 1.0 to 1.1
-                  child: const Icon(
+                  child: Icon(
                     Icons.question_answer,
                     size: 100,
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 24),
+                 SizedBox(height: 24),
                 // App title.
-                const Text(
+                 Text(
                   'Quiz Master',
                   style: TextStyle(
                     color: Colors.white,
@@ -97,9 +97,9 @@ class _SplashScreenState extends State<SplashScreen>
                     fontFamily: 'Roboto', // You can use a custom font here
                   ),
                 ),
-                const SizedBox(height: 8),
+                 SizedBox(height: 8),
                 // A brief slogan or subtitle.
-                const Text(
+                 Text(
                   'Test Your Knowledge!',
                   style: TextStyle(
                     color: Colors.white70,
